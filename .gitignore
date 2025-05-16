@@ -1,0 +1,7 @@
+.env
+node_modules
+
+# //✅ node_modules
+# //Why ignore it?
+# //This folder contains all installed npm packages and can be very large.
+# //Reason: It can be rebuilt at any time by running npm install, so there's no need to track it in Git.
