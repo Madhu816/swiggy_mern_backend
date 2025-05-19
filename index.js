@@ -1,17 +1,21 @@
 const express = require("express");
 const dotEnv=require("dotenv");
+dotEnv.config();
 const mongoose = require("mongoose");
 const VenderRoutes=require('./routers/venderRoutes');
 const bodyParser=require("body-parser");
 const firmRoutes=require("./routers/firmRoutes");
 const productRoutes=require("./routers/productRouters");
+const cors = require("cors"); 
 
-const path=require("path");
+const port = process.env.PORT || 3000;
 
 const app = express();
-const port = process.env.port || 3000;
 
-dotEnv.config();
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true,
+}))
 
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
@@ -29,7 +33,7 @@ app.use('/uploads', express.static('uploads'));
 
 
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("It is working with MongoDB connection!");
 });
 
