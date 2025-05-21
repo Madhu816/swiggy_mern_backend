@@ -30,6 +30,7 @@ const addProduct=async(req,res)=>{
             category,
             bestseller,
             description,
+            image,
             firm:firmData._id
         })
         const savedProduct=await product.save();
@@ -51,7 +52,7 @@ const getProductByFirm=async (req,res)=>{
         if(!firm){
             res.status(404).json({error:"No firm found"});
         }
-        const restarentName=firm.firmname;
+        const restarentName=firm.firmname; //restarent name
         const product=await Product.find({firm:firmId});
         res.status(200).json({restarentName,product});                        
 

@@ -40,8 +40,10 @@ const venderLogin=async(req,res) => {
         }
         const token=jwt.sign({venderId:vender._id},secretKey,{expiresIn:"1h"});
         console.log("id  is  :",vender._id);
+        
+        const venderId=vender._id;
 
-        res.status(200).json({"Sucess":"Login Sucessfully",token});
+        res.status(200).json({"Sucess":"Login Sucessfully",token,venderId});
         console.log(email,"jwt_token is",token);
 
     }catch(error){
@@ -67,10 +69,13 @@ const getVenderId=async (req,res)=>{
     try {
         const vender=await Vender.findById(venderId).populate("firm");
         if(!vender){
-            return res.status(404).json({error:"vender is not fount "});
+            return res.status(404).json({error:"vender is not found "});
 
         }
-        res.status(200).json(vender);
+        const venderFirmId=vender.firm[0]._id;
+        console.log(venderFirmId);
+
+        res.status(200).json({venderId,venderFirmId,vender});
         
     } catch (error) {
            console.error(error);

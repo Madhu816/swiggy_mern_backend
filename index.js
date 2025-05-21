@@ -7,15 +7,16 @@ const bodyParser=require("body-parser");
 const firmRoutes=require("./routers/firmRoutes");
 const productRoutes=require("./routers/productRouters");
 const cors = require("cors"); 
+const path=require("path");
 
 const port = process.env.PORT || 3000;
 
 const app = express();
+app.use(cors());
 
-app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true,
-}))
+// app.use(cors({
+//     origin:"http://localhost:5173"
+// }))
 
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
@@ -29,7 +30,8 @@ app.use(bodyParser.json());
 app.use("/vender",VenderRoutes);
 app.use("/firm",firmRoutes)
 app.use("/product",productRoutes);
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
