@@ -50,16 +50,16 @@ const getProductByFirm=async (req,res)=>{
         const firmId= req.params.firmid;
         const firm=await Firm.findById(firmId);
         if(!firm){
-            res.status(404).json({error:"No firm found"});
+            return res.status(404).json({error:"No firm found"});
         }
         const restarentName=firm.firmname; //restarent name
         const product=await Product.find({firm:firmId});
-        res.status(200).json({restarentName,product});                        
+        return res.status(200).json({restarentName,product});                        
 
 
     }catch(error){
           console.log(error);
-        res.status(500).json({ message: "Internal server error" });
+         return res.status(500).json({ message: "Internal server error" });
 
 
     }
@@ -71,12 +71,12 @@ const deleteProductById=async(req,res)=>{
         if(!deleteProduct){
         return res.status(404).json({error:"No product found"});
         }
-        res.status(200).json({ message: "Product is deleted successfully" });
+        return res.status(200).json({ message: "Product is deleted successfully" });
 
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Internal server error" });
+        return res.status(500).json({ message: "Internal server error" });
         
     }
 }
