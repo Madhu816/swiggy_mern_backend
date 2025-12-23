@@ -17,10 +17,10 @@ const upload = multer({ storage: storage });
 
 const addProduct=async(req,res)=>{
     const {productName,price,category,bestseller,description}=req.body;
-    const image=req.file?req.file.filename:undefined;
+    const image = req.file?req.file.filename:undefined;
     try{
-        const firmId=req.params.firmid;
-        const firmData=await Firm.findById(firmId);
+        const firmId = req.params.firmid;
+        const firmData =  await Firm.findById(firmId);
         if(!firmData){
             return res.status(404).json({error:"No firm data.. "})
         }
@@ -34,6 +34,7 @@ const addProduct=async(req,res)=>{
             firm:firmData._id
         })
         const savedProduct=await product.save();
+        // In firmData push the all products values                                             
         firmData.product.push(savedProduct);
         await firmData.save();
         
@@ -49,7 +50,7 @@ const getProductByFirm=async (req,res)=>{
     try{
         const firmId= req.params.firmid;
         const firm=await Firm.findById(firmId);
-        if(!firm){
+         if(!firm){
             return res.status(404).json({error:"No firm found"});
         }
         const restarentName=firm.firmname; //restarent name
@@ -66,7 +67,7 @@ const getProductByFirm=async (req,res)=>{
 }
 const deleteProductById=async(req,res)=>{
     try {
-        const productId=req.params.productId;
+        const productId = req.params.productId;
         const deleteProduct=await Product.findByIdAndDelete(productId);
         if(!deleteProduct){
         return res.status(404).json({error:"No product found"});
@@ -80,4 +81,4 @@ const deleteProductById=async(req,res)=>{
         
     }
 }
-module.exports={addProduct:[upload.single("image"),addProduct],getProductByFirm,deleteProductById }
+module.exports = {addProduct:[upload.single("image"),addProduct],getProductByFirm,deleteProductById }

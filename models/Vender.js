@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 
+//Vendor Registarion
 const venderSchema=new mongoose.Schema({
     username:{
         type:String,
@@ -14,6 +15,7 @@ const venderSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    ///refance
     firm:[
         {
             type:mongoose.Schema.Types.ObjectId,
@@ -22,5 +24,7 @@ const venderSchema=new mongoose.Schema({
     ]
     
 })
-const Vender=mongoose.model("Vender",venderSchema);
+const Vender=mongoose.model("Vender",venderSchema); 
 module.exports=Vender;
+// exponet these vendersSchema as Vender
+// and use to another

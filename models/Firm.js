@@ -20,7 +20,6 @@ const firmSchema = new mongoose.Schema({
     },
     offer: {
         type: String
-
     },
     image: {
         type: String

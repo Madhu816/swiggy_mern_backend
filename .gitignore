@@ -1,7 +1,10 @@
 .env
 node_modules
 
+#// Sensitive information is saved in these .env  for secure pupose used .env file
+#// when .gitignore not pushed in git Hub
 # //✅ node_modules
 # //Why ignore it?
 # //This folder contains all installed npm packages and can be very large.
 # //Reason: It can be rebuilt at any time by running npm install, so there's no need to track it in Git.
+#// if 

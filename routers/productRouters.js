@@ -5,7 +5,10 @@ const path=require("path");
 
 const router = express.Router();
 
+// For adding - Products to it
 router.post("/addproduct/:firmid",productController.addProduct);
+
+
 router.get("/:firmid/products",productController.getProductByFirm);
 
 //for images

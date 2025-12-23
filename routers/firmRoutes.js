@@ -7,6 +7,7 @@ const path = require("path");
 const router = express.Router();
 
 router.post("/add", verifyToken, firmController.addFirm);
+// in firmController there is an addFirm
 
 //for-images
 
