@@ -7,6 +7,9 @@ const bodyParser = require("body-parser");
 const firmRoutes = require("./routers/firmRoutes");
 const productRoutes = require("./routers/productRouters");
 const cors = require("cors"); 
+// for cors Because we want to ALLOW frontend → backend request.
+//its like a talking 
+//Cross-Origin Resource Sharing       
 const path = require("path");
 
 const port = process.env.PORT || 3000;
@@ -28,7 +31,7 @@ console.log(error)
 
 // server reads only the json format
 app.use(bodyParser.json());
-app.use("/vendor",VenderRoutes);
+app.use("/vender",VenderRoutes);
 app.use("/firm",firmRoutes)
 app.use("/product",productRoutes);
 // app.use('/uploads', express.static('uploads'));

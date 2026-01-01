@@ -17,8 +17,15 @@ const venderRegister = async(req,res)=>{
     try{
         const venderEmail=await Vender.findOne({email});
         if(venderEmail){
-            return res.status(400).json({message:"Email is already taken..acess another Email"});
+            return res.status(400).json({message:"Email is already taken..acess another Email",venderEmail});
         }
+
+//         if (venderEmail) {
+//   return res.status(400).json({
+//     message: "Email is already taken..access another Email",
+//     emailFound: venderEmail.email   // 👈 only send email, not whole DB object
+//   });
+// }
         const hashedPassword=await bcrypt.hash(password,10);
         // orginal "madhu123" → after bcrypt "$2a$10$kJH...9dQ"
         //10 is a standard value — good balance between security and speed.
@@ -85,6 +92,7 @@ const getVenderId=async (req,res)=>{
             return res.status(404).json({error:"vender is not found "});
 
         }
+        //firm id is in the Vender
         const venderFirmId = vender.firm[0]._id;
         console.log(venderFirmId);
 

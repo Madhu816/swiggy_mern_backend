@@ -28,6 +28,7 @@ const addFirm = async (req, res) => {
         if (!venderData) {
             return res.status(404).json({ message: "Vender not found" });
         }
+        // one vendor has one Firm only condtion
         if(venderData.firm.length>0){
             return res.status(404).json({message:"vender can have only one firm"});
         }
@@ -53,6 +54,7 @@ const addFirm = async (req, res) => {
         await venderData.save();
 
         return res.status(200).json({ message: "Firm added successfully",firmId });
+        //sending the firmid
         
     } catch (error) {
         console.log(error);
