@@ -17,9 +17,9 @@ const port = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 
-// app.use(cors({
-//     origin:"http://localhost:5174"
-// }))
+app.use(cors({
+    origin:"http://localhost:5173"
+}))
 
 mongoose.connect(process.env.MONGO_URL)   // process.env.MONGO_URL means accessing & connecting with mongoose
 .then(()=>{

@@ -74,7 +74,7 @@ const venderLogin = async(req,res) => {
 // getting all venders 
     const getAllvenders=async (req,res) => {
         try{
-            const vender=await Vender.find().populate("firm");
+            const vender=await Vender.find().populate("firm");// without poupulate only id comming ,with populate data inside the populate
             res.json({vender});
 
         }catch(error){
